@@ -1,30 +1,19 @@
 package org.example;
 
-public class user {
+public class User {
     private long id;
     private String firstName;
     private String lastName;
     private String gender;
     private String email;
     private boolean insured;
-    private healthInsurancePlan patientInsurancePlan;
+    private HealthInsurancePlan patientInsurancePlan;
     private boolean smokes;
     private int age;
 
-    public user(){
+    public User(){
     }
 
-    public user(long id, String firstName, String lastName, String gender, String email, boolean insured, healthInsurancePlan patientInsurancePlan, boolean smokes, int age){
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.email = email;
-        this.insured = insured;
-        this.patientInsurancePlan = patientInsurancePlan;
-        this.smokes = smokes;
-        this.age = age;
-    }
 
     public long getId() {
         return id;
@@ -91,11 +80,11 @@ public class user {
         this.insured = insured;
     }
 
-    public void setInsurancePlan(healthInsurancePlan patientInsurancePlan){
+    public void setInsurancePlan(HealthInsurancePlan patientInsurancePlan){
         this.patientInsurancePlan = patientInsurancePlan;
     }
 
-    public healthInsurancePlan getInsurancePlan(){
+    public HealthInsurancePlan getInsurancePlan(){
         return this.patientInsurancePlan;
     }
 }

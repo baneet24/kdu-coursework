@@ -1,8 +1,8 @@
 package org.example;
 
-public class goldPlan extends healthInsurancePlan {
+public class GoldPlan extends HealthInsurancePlan {
 
-    public goldPlan(){
+    public GoldPlan(){
         setCoverage(0.8);
     }
 

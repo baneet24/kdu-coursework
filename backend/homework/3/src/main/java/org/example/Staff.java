@@ -1,23 +1,11 @@
 package org.example;
 
-public class staff extends user {
+public class Staff extends User {
 
     private long staffId;
     private int yearsOfExperience;
     private String description;
     private double salary;
-
-
-    public staff(long id, String firstName, String lastName, String gender, String email,
-                 long staffId, int yearsOfExperience, String description, double salary,  boolean insured, healthInsurancePlan patientInsurancePlan,
-                 boolean smokes, int age){
-
-        super(id, firstName, lastName, gender, email, insured, patientInsurancePlan, smokes, age);
-        this.staffId = staffId;
-        this.yearsOfExperience = yearsOfExperience;
-        this.description = description;
-        this.salary = salary;
-    }
 
     public long getStaffId() {
         return staffId;

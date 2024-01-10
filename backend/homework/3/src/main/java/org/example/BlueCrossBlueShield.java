@@ -1,9 +1,9 @@
 package org.example;
 
-public class BlueCrossBlueShield implements insuranceBrand {
-    public double computeMonthlyPremium(healthInsurancePlan insurancePlan, int age, boolean smoking){
+public class BlueCrossBlueShield implements InsuranceBrand {
+    public double computeMonthlyPremium(HealthInsurancePlan insurancePlan, int age, boolean smoking){
         double premiumAmount = 0;
-        if(insurancePlan instanceof platinumPlan) {
+        if(insurancePlan instanceof PlatinumPlan) {
             if (age > 55) {
                 premiumAmount += 200.0;
             }
@@ -12,7 +12,7 @@ public class BlueCrossBlueShield implements insuranceBrand {
             }
         }
 
-        else if(insurancePlan instanceof goldPlan){
+        else if(insurancePlan instanceof GoldPlan){
             if (age > 55) {
                 premiumAmount += 150.0;
             }
@@ -21,7 +21,7 @@ public class BlueCrossBlueShield implements insuranceBrand {
             }
         }
 
-        else if(insurancePlan instanceof silverPlan){
+        else if(insurancePlan instanceof SilverPlan){
             if (age > 55) {
                 premiumAmount += 50.0;
             }
@@ -30,7 +30,7 @@ public class BlueCrossBlueShield implements insuranceBrand {
             }
         }
 
-        else if(insurancePlan instanceof bronzePlan){
+        else if(insurancePlan instanceof BronzePlan){
             if (age > 55) {
                 premiumAmount += 50.0;
             }

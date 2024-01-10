@@ -1,11 +1,11 @@
 package org.example;
 
-public class billing {
+public class Billing {
 
-    public static double[] computePaymentAmount(patient patient, double amount) {
+    public static double[] computePaymentAmount(Patient patient, double amount) {
         double[] payments = new double[2];
 
-        healthInsurancePlan patientInsurancePlan = patient.getInsurancePlan();
+        HealthInsurancePlan patientInsurancePlan = patient.getInsurancePlan();
 
         if(patientInsurancePlan == null){
             payments[0] = 0;
@@ -17,19 +17,19 @@ public class billing {
         double insuranceAmount = amount*planCoverage;
         double patientAmount = amount - insuranceAmount;
 
-        if(patientInsurancePlan instanceof platinumPlan){
+        if(patientInsurancePlan instanceof PlatinumPlan){
             patientAmount -= 50;
             insuranceAmount+= 50;
         }
-        else if(patientInsurancePlan instanceof goldPlan){
+        else if(patientInsurancePlan instanceof GoldPlan){
             patientAmount -= 40;
             insuranceAmount+= 50;
         }
-        else if(patientInsurancePlan instanceof silverPlan){
+        else if(patientInsurancePlan instanceof SilverPlan){
             patientAmount -= 30;
             insuranceAmount+= 50;
         }
-        else if(patientInsurancePlan instanceof bronzePlan){
+        else if(patientInsurancePlan instanceof BronzePlan){
             patientAmount -= 25;
             insuranceAmount+= 50;
         }
