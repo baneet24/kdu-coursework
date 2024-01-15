@@ -27,15 +27,27 @@ public class TransactionReader {
 
     private static Transaction createTransactionFromNode(JsonNode transactionNode) {
         String type = transactionNode.get("type").asText();
+        Transaction result;
+        switch (type) {
+            case "BUY":
+                result = createBuyTransaction(transactionNode.get("data"));
+                break;
+            case "UPDATE_PRICE":
+                result = createUpdatePriceTransaction(transactionNode.get("data"));
+                break;
+            case "ADD_VOLUME":
+                result = createAddVolumeTransaction(transactionNode.get("data"));
+                break;
+            case "SELL":
+                result = createSellTransaction(transactionNode.get("data"));
+                break;
+            default:
+                result = null;
+                break;
+        }
+        return result;
+    };
 
-        return switch (type) {
-            case "BUY" -> createBuyTransaction(transactionNode.get("data"));
-            case "UPDATE_PRICE" -> createUpdatePriceTransaction(transactionNode.get("data"));
-            case "ADD_VOLUME" -> createAddVolumeTransaction(transactionNode.get("data"));
-            case "SELL" -> createSellTransaction(transactionNode.get("data"));
-            default -> null;
-        };
-    }
 
     private static BuyTransaction createBuyTransaction(JsonNode dataNode) {
         String coin = dataNode.get("coin").asText();
