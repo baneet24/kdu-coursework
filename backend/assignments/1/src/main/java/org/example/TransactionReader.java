@@ -45,8 +45,8 @@ public class TransactionReader {
                 result = null;
                 break;
         }
-        return result;
-    };
+return result;
+        };
 
 
     private static BuyTransaction createBuyTransaction(JsonNode dataNode) {

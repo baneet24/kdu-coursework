@@ -1,20 +1,27 @@
 package org.example;
 
-
+import org.example.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-import static org.example.ExecuteTransaction.*;
 import static org.example.TransactionReader.readTransactionsFromFile;
 
-public class Main {
+public class ExecuteTransaction implements Runnable {
+    LoggerService log = new LoggerService();
+    private CountDownLatch latch;
+    private List<Transaction> transactions; // Declare transactions as an instance variable
+    private CoinList coinArr;
+    /**
+     *
+     * @param latch
+     */
+    public ExecuteTransaction(List<Transaction> transactions, CoinList coinArr, CountDownLatch latch) {
+        this.latch = latch;
+    }
 
-    private static final LoggerService log = new LoggerService();
-
-    public static void main(String[] args) {
-
+    public void FormTransaction(){
         String coinsCsvFile = "src/main/resources/coins.csv";
 
         String tradersCsvFile = "src/main/resources/traders.csv";
@@ -22,7 +29,7 @@ public class Main {
         TraderList traderArr = new TraderList();
         traderArr.makeTradersList(tradersCsvFile);
 
-        CoinList coinArr = new CoinList(traderArr);
+        coinArr = new CoinList(traderArr);
         coinArr.makeCoinList(coinsCsvFile);
 
         String targetCoinName = "Bitcoin";
@@ -46,23 +53,17 @@ public class Main {
         coinArr.getTopNCoins(5);
 
         String filePath = "src/main/resources/small_transaction.json";
-        List<Transaction> transactions = readTransactionsFromFile(filePath);
-
-
-        CountDownLatch latch = new CountDownLatch(transactions.size());
-
-
+        transactions = readTransactionsFromFile(filePath);
+    }
+    @Override
+    public void run() {
         try {
-            ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-            for (Transaction transaction : transactions)
-                executorService.submit(new ExecuteTransaction(transactions, coinArr, latch));
-            executorService.shutdown();
-            latch.await();
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            e.printStackTrace();
+            processTransaction();
+        } finally {
+            latch.countDown();
         }
-
+    }
+    private void processTransaction() {
         for (Transaction transaction : transactions) {
             switch (transaction.getType()) {
                 case "BUY":
@@ -83,4 +84,21 @@ public class Main {
         }
 
     }
+
+    static void handleBuyTransaction(BuyTransaction buyTransaction, CoinList coinArr) {
+        coinArr.buyCoin(buyTransaction.getCoin(), buyTransaction.getQuantity(), buyTransaction.getWalletAddress());
+    }
+    static void handleSellTransaction(SellTransaction sellTransaction, CoinList coinArr) {
+        coinArr.sellCoin(sellTransaction.getCoin(), sellTransaction.getQuantity(), sellTransaction.getWalletAddress());
+    }
+
+    static void handleAddVolumeTransaction(AddVolumeTransaction addVolumeTransaction, CoinList coinArr) {
+        coinArr.addVolume(addVolumeTransaction.getCoin(), addVolumeTransaction.getVolume());
+    }
+
+    static void handleUpdatePriceTransaction(UpdatePriceTransaction updatePriceTransaction, CoinList coinArr) {
+        coinArr.updatePrice(coinArr.retrieveCoinDetailsBySymbol(updatePriceTransaction.getCoin()), updatePriceTransaction.getPrice());
+    }
+
 }
+
