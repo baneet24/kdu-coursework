@@ -17,10 +17,17 @@ public class ShiftTypeService {
         this.shiftTypeRepository = shiftTypeRepository;
     }
 
+    /**
+     * @param shiftType add shift type to repo
+     */
     public void saveShiftType(ShiftType shiftType) {
         shiftTypeRepository.save(shiftType);
     }
 
+    /**
+     * @param shiftTypeId
+     * @return shift type that matches the ID
+     */
     public ShiftType getShiftTypeById(UUID shiftTypeId) {
         return shiftTypeRepository.findById(shiftTypeId).orElse(null);
     }

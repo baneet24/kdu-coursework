@@ -16,6 +16,10 @@ public class TenantService {
         this.tenantRepository = tenantRepository;
     }
 
+
+    /**
+     * @param name adds the tenant to the repo
+     */
     public void addTenant(String name) {
         Tenant tenant = new Tenant();
         tenant.setName(name);
@@ -23,6 +27,9 @@ public class TenantService {
         tenantRepository.save(tenant);
     }
 
+    /**
+     * @return retrieves all tenants
+     */
     public List<Tenant> getAllTenant() {
         return tenantRepository.findAll();
     }

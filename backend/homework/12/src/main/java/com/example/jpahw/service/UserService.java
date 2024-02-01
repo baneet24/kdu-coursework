@@ -35,6 +35,13 @@ public class UserService {
         return userRepository.findAll(pageable);
     }
 
+    /**
+     * @param userId
+     * @param username
+     * @param loggedIn
+     * @param timeZone
+     * updates the user fields
+     */
     public void updateUserDetails(UUID userId, String username, int loggedIn, String timeZone) {
         userRepository.updateUserDetails(userId, username, loggedIn, timeZone);
     }
