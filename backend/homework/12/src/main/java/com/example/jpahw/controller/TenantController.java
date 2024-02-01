@@ -24,7 +24,7 @@ public class TenantController {
         return new ResponseEntity<>("Tenant created successfully", HttpStatus.CREATED);
     }
 
-    @GetMapping("/AllTenants")
+    @GetMapping("/allTenants")
     public ResponseEntity<List<Tenant>> getAllTenants() {
         List<Tenant> allTenants = tenantService.getAllTenant();
         return new ResponseEntity<>(allTenants, HttpStatus.OK);

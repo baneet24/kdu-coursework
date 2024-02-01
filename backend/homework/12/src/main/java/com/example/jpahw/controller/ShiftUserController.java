@@ -20,7 +20,7 @@ public class ShiftUserController {
         this.shiftUserService = shiftUserService;
     }
 
-    @PostMapping
+    @PostMapping("/shiftUser")
     public ResponseEntity<String> saveShiftUser(@RequestBody ShiftUser shiftUser) {
         shiftUserService.saveShiftUser(shiftUser);
         return new ResponseEntity<>("ShiftUser saved successfully", HttpStatus.CREATED);
@@ -36,7 +36,7 @@ public class ShiftUserController {
         }
     }
 
-    @GetMapping
+    @GetMapping("/allUsers")
     public ResponseEntity<List<ShiftUser>> getAllShiftUsers() {
         List<ShiftUser> allShiftUsers = shiftUserService.getAllShiftUsers();
         return new ResponseEntity<>(allShiftUsers, HttpStatus.OK);
