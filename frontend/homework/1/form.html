@@ -4,67 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Page</title>
+    <link rel="stylesheet" href="form.css">
 </head>
 <body>
 
     <!-- Header Section -->
     <header>
-        <h1>Form Page</h1>
-        <p>Fill out the form below:</p>
+        <h1 tabindex="1">Form Page</h1>
+        <p tabindex="2">Fill out the form below:</p>
     </header>
 
     <!-- Form Section -->
     <form action="#" method="post">
 
-
-        <label for="textarea" aria-placeholder="write about yourself">Text Area:</label>
-        <textarea id="textarea" name="textarea" rows="4" cols="50"></textarea>
+        <!-- Text Area Input -->
+        <label for="textarea" aria-placeholder="write about yourself" tabindex="3">Text Area:</label>
+        <textarea id="textarea" name="textarea" rows="4" cols="50" tabindex="4"></textarea>
 
         <!-- Radio Buttons -->
-        <label>Radio Buttons:</label><br>
-        <input type="radio" id="radio1" name="radio-group" value="option1" checked>
-        <label for="radio1">Option 1</label><br>
-        <input type="radio" id="radio2" name="radio-group" value="option2">
-        <label for="radio2">Option 2</label><br>
+        <label tabindex="5">Radio Buttons:</label><br>
+        <input type="radio" id="radio1" name="radio-group" value="option1" checked tabindex="6">
+        <label for="radio1" tabindex="7">Option 1</label><br>
+        <input type="radio" id="radio2" name="radio-group" value="option2" tabindex="8">
+        <label for="radio2" tabindex="9">Option 2</label><br>
 
         <!-- Checkboxes -->
-        <label>Checkboxes:</label><br>
-        <input type="checkbox" id="checkbox1" name="checkbox1" value="check1">
-        <label for="checkbox1">Check 1</label><br>
-        <input type="checkbox" id="checkbox2" name="checkbox2" value="check2">
-        <label for="checkbox2">Check 2</label><br>
+        <label tabindex="10">Checkboxes:</label><br>
+        <input type="checkbox" id="checkbox1" name="checkbox1" value="check1" tabindex="11">
+        <label for="checkbox1" tabindex="12">Check 1</label><br>
+        <input type="checkbox" id="checkbox2" name="checkbox2" value="check2" tabindex="13">
+        <label for="checkbox2" tabindex="14">Check 2</label><br>
 
-        <!-- Select -->
-        <label for="select">Select:</label><br>
-        <select id="select" name="select">
+        <!-- Select Dropdown -->
+        <label for="select" tabindex="15">Select:</label><br>
+        <select id="select" name="select" tabindex="16">
             <option value="option1">Option 1</option>
             <option value="option2">Option 2</option>
         </select><br>
 
-        <!-- Password -->
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br>
+        <!-- Password Input -->
+        <label for="password" tabindex="17">Password:</label><br>
+        <input type="password" id="password" name="password" required tabindex="18"><br>
 
-        <!-- Number -->
-        <label for="number">Number:</label><br>
-        <input type="number" id="number" name="number" required><br>
+        <!-- Number Input -->
+        <label for="number" tabindex="19">Number:</label><br>
+        <input type="number" id="number" name="number" required tabindex="20"><br>
 
-        <!-- Telephone -->
-        <label for="tel">Telephone:</label><br>
-        <input type="tel" id="tel" name="tel" pattern="[0-9]{10}" required><br>
+        <!-- Telephone Input -->
+        <label for="tel" tabindex="21">Telephone:</label><br>
+        <input type="tel" id="tel" name="tel" pattern="[0-9]{10}" required tabindex="22"><br>
 
-      
-        <label for="search">Search:</label><br>
-        <input type="search" id="search" name="search" required><br>
+        <!-- Search Input -->
+        <label for="search" tabindex="23">Search:</label><br>
+        <input type="search" id="search" name="search" required tabindex="24"><br>
 
-        <input type="submit" value="Submit">
-        <s>Not sure?</s><div><p>want to fill it again</p></div>
-        <input type="reset" value="Reset">
+        <!-- Submit and Reset Buttons -->
+        <input type="submit" value="Submit" tabindex="25">
+        <s>Not sure?</s>
+        <div><p>want to fill it again</p></div>
+        <input type="reset" value="Reset" tabindex="26">
+
     </form>
 
     <!-- Footer Section -->
     <footer>
-        <p>&copy; 2024 Form Page. All rights reserved.</p>
+        <p tabindex="27">&copy; 2024 Form Page</p>
     </footer>
 
 </body>
