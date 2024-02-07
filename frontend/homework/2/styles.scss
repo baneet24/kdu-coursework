@@ -1,0 +1,113 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    margin-left: 60px;
+    margin-right: 60px;
+
+    h1{
+    font-size: 100px;
+    margin-top: 20px;
+    }
+}
+
+.day-time {
+    margin-top: 10px;
+    font-size: 30px;
+    color: gray;
+}
+
+h2 {
+    font-weight: normal;
+  }
+
+.information {
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 100px;
+    justify-content: space-between;
+    width: 66%;
+}
+
+
+.temperature{
+    display: flex;
+    height: 180px;
+}
+  
+.temperature{
+    h2{
+        display: flex;
+    }
+    .temperature-degree{
+    margin: 0;
+    font-size: 100px;
+    }
+    sup{
+    font-size: 40px;
+    }
+}
+
+sup{
+    color: grey;
+}
+
+.climate-details{
+    font-size: 37px;
+    color: #909090;  
+    line-height: 140%;
+    
+    b{
+        font-weight:normal;
+        color:#696969;
+    }
+}
+
+
+.detailed-information{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .day-name{
+        text-align: center;
+        font-size: 25px;
+    }
+
+    .temperature-range{
+        display: flex;
+      
+        justify-content: space-between;
+
+        .temp-high{
+            font-size: 25px;
+            color: #696969;
+        }
+
+        .temp-low{
+            font-size: 25px;
+            color: #909090;
+        }
+    }
+
+    .img{
+        width: 160px;
+        height: 160px;
+    }
+
+    .pollen{
+        font-size: 20px;
+        color: #909090;
+    }
+
+    .day-detail{
+        text-align: center;
+    }
+}
+
