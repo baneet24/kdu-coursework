@@ -1,0 +1,11 @@
+{
+  "HostName": "hp-HP-EliteBook-840-G7-Notebook-PC",
+  "OperatingSystem": "Linux",
+  "Architecture": "x64",
+  "OSRelease": "6.5.0-15-generic",
+  "Uptime": 291119.9,
+  "CPUCores": 8,
+  "TotalMemory": 16524701696,
+  "FreeMemory": 1348730880,
+  "CurrentWorkingDirectory": "/home/hp/Desktop/frontend homework/hw6/ques1"
+}
