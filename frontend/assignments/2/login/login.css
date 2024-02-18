@@ -1,0 +1,91 @@
+@media screen and (min-width: 415px) {
+  * {
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font-family: "poppins", sans-serif;
+    background-color: #242d34;
+  }
+}
+html {
+  font-size: 8px;
+}
+
+body {
+  height: 100vh;
+}
+
+.main {
+  background-color: #242d34;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.main .container {
+  padding: 13rem 11rem;
+  border-radius: 2.1rem;
+  display: flex;
+  background-color: black;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.main .container .header {
+  display: flex;
+  align-self: center;
+}
+.main .container .header .header-text {
+  background-color: black;
+  color: #e7e9ea;
+  font-size: 7rem;
+}
+.main .container .header #header-icon {
+  background-color: black;
+  padding-left: 1.3rem;
+}
+.main .container .header #header-icon svg {
+  background-color: black;
+  fill: #e7e9ea;
+  width: 7rem;
+}
+.main .container .login-field {
+  background-color: black;
+  width: 42rem;
+  padding: 2rem;
+  font-size: 2.7rem;
+  margin-bottom: 3rem;
+  border: 2px solid #1d9bf0;
+  border-radius: 0.5rem;
+  color: #e7e9ea;
+  outline: none;
+}
+.main .container #login-name {
+  margin-top: 8.5rem;
+}
+.main .container #login-btn {
+  margin-top: 3rem;
+  background-color: #1d9bf0;
+  color: #e7e9ea;
+  width: 48rem;
+  padding: 2rem;
+  border-radius: 27px;
+  font-size: 2rem;
+  font-weight: 600;
+  outline: none;
+}
+
+@media screen and (max-width: 414px) {
+  * {
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font-family: "poppins", sans-serif;
+    background-color: black;
+  }
+  .main {
+    background-color: black;
+  }
+}/*# sourceMappingURL=login.css.map */
