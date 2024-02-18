@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const posts = require("../../data/posts");
+const activeUsers = require("../../data/activeUsers")
 
 const { v4: uuidv4 } = require("uuid");
 
@@ -53,5 +54,8 @@ router.get("/:id", (req, res) => {
   
     res.status(200).send(post);
 })
+
+
+
 
 module.exports = router;

@@ -206,6 +206,25 @@ body {
     flex-direction: column;
     border-right: 1px solid gray;
     border-bottom: 1px solid gray;
+    align-items: center;
+  }
+  .interaction-section .message-section .msg-section-item {
+    width: 100%;
+    margin-top: 2rem;
+    background-color: #181818;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+  }
+  .interaction-section .message-section .user-msg-img {
+    width: 8rem;
+    border-radius: 7rem;
+    text-align: center;
+    margin-right: 1rem;
+    padding-top: 2rem;
+  }
+  .interaction-section .message-section .user-name-msg {
+    width: 20rem;
   }
   .interaction-section .posts {
     overflow-y: scroll;

@@ -1,32 +1,115 @@
 var url = new URL(window.location.href);
 
-const socket = io("http://localhost:3001");
-
-
-
+const socket = io("http://localhost:3002");
 
 var username = url.searchParams.get("username");
+socket.on("userAdded", function () {
+  getActiveUsers();
+});
+
+setTimeout(() => {
+  socket.emit("login", username);
+}, 1000);
+
+function createUserDiv(username) {
+  const userDiv = document.createElement("div");
+  userDiv.classList.add("user-name-msg");
+  userDiv.textContent = username;
+
+  let profilePicture = document.createElement("div");
+  profilePicture.classList.add("user-msg-img");
+  profilePicture.innerText = username[0].toUpperCase();
+  profilePicture.width = 50;
+  profilePicture.height = 50;
+  profilePicture.style.color = "white";
+  profilePicture.style.backgroundColor = "#ef6c00";
+
+  let userParentDiv = document.createElement("div");
+  userParentDiv.classList.add("msg-section-item");
+
+  userParentDiv.appendChild(profilePicture);
+  userParentDiv.appendChild(userDiv);
+  userParentDiv.style.display = "flex";
+
+  userDiv.style.padding = "10px";
+  userDiv.style.margin = "10px 0";
+  userDiv.style.backgroundColor = "#16181C";
+  userDiv.style.borderRadius = "5px";
+  userDiv.style.cursor = "pointer";
+
+  userDiv.addEventListener("click", () => {
+    initiateChat(username);
+  });
+
+  return userParentDiv;
+}
+
+async function getActiveUsers() {
+  try {
+    console.log("in client");
+    const response = await fetch("http://localhost:3002/getActiveUsers");
+    const activeUsers = await response.json();
+
+    console.log(activeUsers);
+
+  
+    const messageSection = document.querySelector(".message-section");
+
+    while (messageSection.firstChild) {
+      messageSection.removeChild(messageSection.firstChild);
+    }
+
+    for (const username in activeUsers) {
+      const userParentDiv = createUserDiv(username);
+
+      messageSection.appendChild(userParentDiv);
+    }
+
+    return activeUsers;
+  } catch (error) {
+    console.error("Error fetching active users:", error);
+  }
+}
+
+async function initiateChat(username) {
+  try {
+    
+    const activeUserslist = await getActiveUsers();
+    console.log("lll");
+    console.log(activeUserslist);
+    const socketId = activeUserslist[username];
+
+    if (socketId) {
+      // Now you have the socket ID, you can use it to send private messages
+      const message = prompt(`Enter your message to ${username}`);
+      if (message) {
+        socket.emit("privateMessage", { to: username, message });
+      }
+    } else {
+      console.error(`No socket ID found for ${username}`);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+
 socket.emit("login", username);
 
-window.addEventListener('scroll', function() {
-  console.log("111")
-  
+window.addEventListener("scroll", function () {
   if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-      callApiWithCounter();
+    callApiWithCounter();
   }
 });
 
-
-
-
-function addPost(postText, type, username){
+function addPost(postText, type, username) {
   if (postText.trim() !== "") {
     var postContainer = document.createElement("div");
     postContainer.classList.add("post");
 
     var profilePicture = document.createElement("div");
-    profilePicture.classList.add("post-img")
- profilePicture.innerText = username[0].toUpperCase();
+    profilePicture.classList.add("post-img");
+    profilePicture.innerText = username[0].toUpperCase();
     profilePicture.width = 50;
     profilePicture.height = 50;
 
@@ -316,30 +399,26 @@ function addPost(postText, type, username){
     // postSection.appendChild(postContainer);
     document.getElementById("post-input").value = "";
   }
- }
-
-
- let counter = 0;
- function callApiWithCounter() {
-  console.log("sjsj")
-  fetch(`http://localhost:3001/api/posts/${counter}/${5}`)
-      .then(response => response.json())
-      .then(posts => {
-        console.log(posts)
-          posts.forEach(post => {
-              addPost(post.content,"scroll",post.username);
-          });
-      })
-      .catch(error => console.error('Error:', error));
-  counter++;
 }
 
+let counter = 0;
+function callApiWithCounter() {
+  fetch(`http://localhost:3002/api/posts/${counter}/${5}`)
+    .then((response) => response.json())
+    .then((posts) => {
+      console.log(posts);
+      posts.forEach((post) => {
+        addPost(post.content, "scroll", post.username);
+      });
+    })
+    .catch((error) => console.error("Error:", error));
+  counter++;
+}
 
 var userName = document.getElementById("name-username");
 var userID = document.getElementById("name-userid");
 userName.innerText = username;
 userID.innerText = "@" + username;
-
 
 var profileIcon = document.getElementById("profile-img");
 profileIcon.innerText = username[0].toUpperCase();
@@ -358,17 +437,12 @@ function handleInputChange() {
   postButton.style.color = postText !== "" ? "#e7e9ea" : "#808080";
 }
 
-
-
-
-
-
 // JavaScript function to handle posting
 async function post() {
   var postButton = document.getElementById("btn");
   postButton.style.backgroundColor = "#0f4e78";
   postButton.style.color = "#808080";
-  // Get the input value
+  // Getting the input value
   var postText = document.getElementById("post-input").value;
 
   const postData = {
@@ -377,7 +451,7 @@ async function post() {
   };
 
   try {
-    const response = await fetch("http://localhost:3001/api/posts", {
+    const response = await fetch("http://localhost:3002/api/posts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -395,6 +469,27 @@ async function post() {
     windows.alert("Error in adding post");
     console.error("Error:", error);
   }
-
- 
 }
+var interactionContainer = document.getElementsByClassName(
+  "interaction-section"
+)[0];
+var tweetBoxContainer = document.getElementsByClassName("tweet-box")[0];
+var postsContainer = document.getElementsByClassName("posts")[0];
+var msgContainer = document.getElementsByClassName("message-section")[0];
+var username = url.searchParams.get("username");
+
+
+document
+  .getElementById("messages-container")
+  .addEventListener("click", function () {
+    getActiveUsers();
+    
+    document.getElementById("home-text").style.fontWeight = "400";
+    document.getElementById("message-text").style.fontWeight = "600";
+    msgContainer.textContent = "Messages";
+    msgContainer.style.display = "block";
+    tweetBoxContainer.style.display = "none";
+    postsContainer.style.display = "none";
+
+  });
+
