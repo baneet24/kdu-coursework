@@ -1,0 +1,11 @@
+.main{
+  margin: 1rem;
+  background-color: #ffec99;
+  height: 100vh;
+  padding: 2rem;
+}
+
+.lists{
+  display: flex;
+  justify-content: space-between;
+}
