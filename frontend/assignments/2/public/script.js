@@ -37,12 +37,56 @@ function createUserDiv(username) {
   userDiv.style.borderRadius = "5px";
   userDiv.style.cursor = "pointer";
 
-  userDiv.addEventListener("click", () => {
-    initiateChat(username);
-  });
-
   return userParentDiv;
 }
+
+const messageInput = document.getElementById("msgInput");
+const sendButton = document.getElementById("sendMessage");
+const messageOutput = document.getElementById("chat-section");
+
+document
+  .querySelector(".message-section")
+  .addEventListener("click", (event) => {
+    const clickedUserDiv = event.target.closest(".user-name-msg");
+    if (clickedUserDiv) {
+      const username = clickedUserDiv.textContent.trim();
+      showChatSection(username);
+    }
+  });
+
+sendButton.addEventListener("click", () => {
+  const message = messageInput.value.trim();
+  const recipientUsername = messageOutput.dataset.recipient;
+
+  if (message && recipientUsername) {
+    socket.emit("message", { to: recipientUsername, message });
+
+    addMessage("You", message);
+
+    messageInput.value = "";
+  }
+});
+
+function showChatSection(username) {
+  const chatSection = document.getElementById("chat-section");
+  document.getElementById('chat-messages').innerHTML = '';
+  chatSection.style.display = "block";
+  chatSection.dataset.recipient = username;
+}
+
+function displayReceivedMessage(from, message) {
+  const currentlySelectedUser =
+    document.getElementById("chat-section").dataset.recipient;
+
+  if (from === currentlySelectedUser) {
+    addMessage(from, message);
+  }
+}
+
+socket.on("privateMessage", (data) => {
+  const { from, message } = data;
+  displayReceivedMessage(from, message);
+});
 
 async function getActiveUsers() {
   try {
@@ -52,7 +96,6 @@ async function getActiveUsers() {
 
     console.log(activeUsers);
 
-  
     const messageSection = document.querySelector(".message-section");
 
     while (messageSection.firstChild) {
@@ -71,28 +114,15 @@ async function getActiveUsers() {
   }
 }
 
-async function initiateChat(username) {
-  try {
-    
-    const activeUserslist = await getActiveUsers();
-    console.log("lll");
-    console.log(activeUserslist);
-    const socketId = activeUserslist[username];
+function addMessage(from, message) {
+  const element = document.createElement("p");
+  if (from === "You") element.classList.add("sended-msg");
+  else element.classList.add("received-msg");
+  element.innerText = message;
 
-    if (socketId) {
-      // Now you have the socket ID, you can use it to send private messages
-      const message = prompt(`Enter your message to ${username}`);
-      if (message) {
-        socket.emit("privateMessage", { to: username, message });
-      }
-    } else {
-      console.error(`No socket ID found for ${username}`);
-    }
-  } catch (error) {
-    console.error("Error:", error);
-  }
+
+  document.getElementById("chat-messages").appendChild(element);
 }
-
 
 socket.emit("login", username);
 
@@ -478,18 +508,15 @@ var postsContainer = document.getElementsByClassName("posts")[0];
 var msgContainer = document.getElementsByClassName("message-section")[0];
 var username = url.searchParams.get("username");
 
-
 document
   .getElementById("messages-container")
   .addEventListener("click", function () {
     getActiveUsers();
-    
+
     document.getElementById("home-text").style.fontWeight = "400";
     document.getElementById("message-text").style.fontWeight = "600";
     msgContainer.textContent = "Messages";
     msgContainer.style.display = "block";
     tweetBoxContainer.style.display = "none";
     postsContainer.style.display = "none";
-
   });
-

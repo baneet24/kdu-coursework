@@ -43,7 +43,7 @@ io.on("connection", (socket) => {
     }
   });
 
-  socket.on("privateMessage", (data) => {
+  socket.on("message", (data) => {
     const { to, message } = data;
     const senderUsername = Object.keys(activeUsers).find(
       (key) => activeUsers[key] === socket.id

@@ -11,7 +11,7 @@ var username = url.searchParams.get("username");
 document
   .getElementById("messages-container")
   .addEventListener("click", function () {
-    
+
       document.getElementById("home-text").style.fontWeight = "400";
       document.getElementById("message-text").style.fontWeight = "600";
       msgContainer.textContent = "Messages";
@@ -22,6 +22,7 @@ document
   });
 
 document.getElementById("home-container").addEventListener("click", function () {
+  document.getElementById('chat-section').style.display = "none";
     document.getElementById("home-text").style.fontWeight = "600";
     document.getElementById("message-text").style.fontWeight = "400";
     tweetBoxContainer.style.display = "block";
@@ -30,7 +31,6 @@ document.getElementById("home-container").addEventListener("click", function () 
     msgContainer.style.display = "none";
 
 });
-
 
 document.getElementById("home-text").style.fontWeight = "400";
 document.getElementById("message-text").style.fontWeight = "600";
