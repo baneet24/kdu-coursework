@@ -1,0 +1,15 @@
+.tags {
+    display: flex;
+    margin-left: 1rem;
+    margin-top: 3rem;
+
+    span {
+        background-color: rgb(238, 153, 194);
+        color: black;
+        border-radius: 2rem;
+        padding: 1rem 2.5rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+        margin-left: 1rem;
+    }
+}
