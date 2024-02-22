@@ -5,7 +5,7 @@ import { TodoContainer } from './components/todoContiner/TodoContainer';
 
 const App: React.FC = () => {
   const [searchItem, setSearchItem] = useState<string>('');
-  const [todoList, setTodoList] = useState<string[]>(['Item 1', 'Item 2', 'Item 3']);
+  const [todoList, setTodoList] = useState<string[]>([]);
 
   return (
     <div>
