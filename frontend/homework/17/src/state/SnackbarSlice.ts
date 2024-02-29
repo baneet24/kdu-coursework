@@ -1,16 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getProducts } from "../thunk/getProducts";
+import { AlertColor } from "@mui/material";
 
 interface ISnackBar {
   show: boolean;
   message: string;
-  variant: string;
+  variant: AlertColor;
 }
 
 const initialState: ISnackBar = {
   show: false,
   message: "",
-  variant: "",
+  variant: "error",
 };
 
 export const snackBarSlice = createSlice({

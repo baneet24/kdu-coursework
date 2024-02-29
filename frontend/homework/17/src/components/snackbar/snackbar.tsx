@@ -4,6 +4,7 @@ import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../state/store/store";
 import { setShow } from "../../state/SnackbarSlice";
+import { Alert, AlertColor} from "@mui/material";
 
 interface State extends SnackbarOrigin {
   open: boolean;
@@ -19,6 +20,7 @@ export default function SnackBar() {
 
   const message = useSelector((state: RootState) => state.snackBar.message);
   const show = useSelector((state: RootState) => state.snackBar.show);
+  const colorVariant: AlertColor = useSelector((state: RootState) => state.snackBar.variant);
   const reduxDispatch: AppDispatch = useDispatch();
 
   const handleClose = () => {
@@ -26,15 +28,16 @@ export default function SnackBar() {
   };
 
   return (
-    <Box sx={{bgcolor: 'green' }} >
+    <Box sx={{width: 500 }} >
       <Snackbar
         anchorOrigin={{ vertical, horizontal }}
         open={show}
         onClose={handleClose}
-        message={message}
         autoHideDuration={5000}
         key={vertical + horizontal}
-      />
+      >
+        <Alert severity={colorVariant} variant="filled">{message}</Alert>
+      </Snackbar>
     </Box>
   );
 }
