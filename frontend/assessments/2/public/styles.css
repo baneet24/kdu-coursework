@@ -1,0 +1,106 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 8px;
+}
+
+.header {
+  text-align: center;
+  background-color: #1971c2;
+  color: white;
+  padding: 1.4em;
+  font-size: 2rem;
+}
+
+.main {
+  padding: 0.3rem;
+  display: flex;
+  padding-top: 2rem;
+  width: 100%;
+}
+.main .info {
+  margin-right: 2rem;
+  display: flex;
+  width: 75%;
+  flex-direction: column;
+}
+.main .info .text-info {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 5rem;
+  padding-bottom: 1rem;
+}
+.main .info .text-info #buy-btn {
+  background-color: #b2f2bb;
+  border: 1px solid #2f9e44;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  color: #2f9e44;
+}
+.main .info .text-info #sell-btn {
+  background-color: #ffc9c9;
+  border: 1px solid #e03101;
+  color: #e03131;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.main .info .text-info #stock-price {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.main .info .text-info #stock-price #label-price {
+  font-size: 3rem;
+}
+.main .info .text-info #stock-price #price-value {
+  font-size: 3rem;
+  color: #2f9e44;
+}
+.main .info .text-info #stock-price #price-percent {
+  font-size: 0.2rem;
+}
+.main .info .text-info .info-items {
+  width: 40rem;
+  border: solid 1px;
+}
+.main .info .text-info #name {
+  display: flex;
+  padding-top: 0.7rem;
+  justify-content: center;
+  font-size: 3rem;
+}
+.main .info .text-info #content {
+  padding-top: 1rem;
+  border: none;
+  text-align: center;
+  font-size: 2rem;
+  padding-left: 7rem;
+}
+.main .info .text-info .pic-box {
+  width: 3.7rem;
+  height: 3.1rem;
+  padding-right: 1rem;
+}
+.main .info .text-info .pic-box img {
+  height: 3.1rem;
+  width: 3.7rem;
+}
+.main .info .graphs {
+  display: grid;
+  height: 500px;
+  border: 1px solid;
+  grid-template-rows: repeat(4, 1fr);
+}
+.main .info .graphs .graph-item {
+  border: dotted 1px;
+}
+.main .history {
+  padding: 1rem;
+  font-size: 3rem;
+  width: 25%;
+  border: solid 1px;
+}/*# sourceMappingURL=styles.css.map */
