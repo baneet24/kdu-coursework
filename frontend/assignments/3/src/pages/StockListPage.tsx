@@ -47,7 +47,7 @@ const useStyles = createUseStyles({
 
   company: {
     width: "40%",
-    color: 'black'
+    color: "black",
   },
 
   stockItem: {
@@ -102,7 +102,7 @@ const useStyles = createUseStyles({
 
 export const StockListPage = () => {
   const styles = useStyles();
-  const { stocks } = useSelector((state: RootState) => state.stockMarket);
+  const stocks = useSelector((state: RootState) => state.stockMarket.stocks);
   const { watchlist } = useSelector((state: RootState) => state.watchlist);
   const status = useSelector((state: RootState) => state.stockMarket.state);
   const reducedispatch: AppDispatch = useDispatch();
@@ -159,9 +159,7 @@ export const StockListPage = () => {
                 {stocks.slice(startIndex, endIndex).map((stock) => (
                   <li key={stock.stock_name}>
                     <div className={styles.stockItem}>
-                      {/* <div className={styles.company}>{stock.stock_name}</div> */}
                       <Link
-                        // to={`/stockDetailPage?name=${stock.stock_name}&symbol=${stock.stock_symbol}`}
                         to={`/stockDetailPage/${stock.stock_name}`}
                         className={styles.company}
                       >

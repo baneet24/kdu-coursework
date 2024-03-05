@@ -15,6 +15,10 @@ import { RootState } from "../state/store/store";
 
 Chart.register(BarController, BarElement, LinearScale, Title, CategoryScale);
 
+interface BarGraphProps {
+  onRandomValueChange: (value: number) => void;
+}
+
 const useStyles = createUseStyles({
   graphContainer: {
     maxHeight: 700,
@@ -29,13 +33,13 @@ const useStyles = createUseStyles({
   },
 });
 
-export const BarGraph: React.FC = () => {
+export const BarGraph: React.FC<BarGraphProps> = ({ onRandomValueChange }) => {
   const { name } = useParams();
-  console.log("gogogogo", name);
+
   const styles = useStyles();
   const stocks = useSelector((state: RootState) => state.stockMarket.stocks);
   const basePrice =
-    stocks.find((stock) => stock.stock_name === name)?.base_price || 50;
+    stocks.find((stock) => stock.stock_name === name)?.base_price || 0;
   const [chartData, setChartData] = useState(generateInitialData());
   const [currentRandomValue, setCurrentRandomValue] = useState<number>(0);
 
@@ -45,11 +49,13 @@ export const BarGraph: React.FC = () => {
         if (prevData.every((value) => value !== 0)) {
           const randomValue = generateRandomValue();
           setCurrentRandomValue(randomValue);
+          onRandomValueChange(randomValue);
           return [...prevData, randomValue];
         } else {
           const newData = [...prevData];
           const randomValue = generateRandomValue();
           setCurrentRandomValue(randomValue);
+          onRandomValueChange(randomValue);
           newData[newData.findIndex((value) => value === 0)] = randomValue;
           return newData;
         }
@@ -57,32 +63,10 @@ export const BarGraph: React.FC = () => {
     }, 5000);
 
     return () => clearInterval(intervalId);
-  }, [chartData]);
+  }, [chartData, onRandomValueChange]);
 
   function generateInitialData() {
-    return [
-      basePrice,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-      0,
-    ];
+    return [basePrice, ...Array(40).fill(0)];
   }
 
   function generateRandomValue() {
@@ -102,12 +86,13 @@ export const BarGraph: React.FC = () => {
           if (value > chartData[index]) {
             return "#b2f2bb";
           } else if (value < chartData[index]) {
-            return "#ffc9c9"; 
+            return "#ffc9c9";
           } else {
             return "#b2f2bb";
           }
         }),
         borderWidth: 1,
+        barThickness: 30,
       },
     ],
   };
@@ -132,14 +117,12 @@ export const BarGraph: React.FC = () => {
     },
     indexAxis: "x",
     barThickness: "flex",
-    barPercentage: 0.8,
+    barPercentage: 0.5,
+    categoryPercentage: 1.0,
   };
 
   return (
     <div>
-      <div className={styles.currentValueContainer}>
-        Current Random Value: {currentRandomValue}
-      </div>
       <Bar data={data} options={options} className={styles.graphContainer} />
     </div>
   );

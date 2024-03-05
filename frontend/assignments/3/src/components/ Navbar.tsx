@@ -42,7 +42,12 @@ export function DrawerAppBar(props: Props) {
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
             <ListItemButton sx={{ textAlign: "center", fontSize: "2rem" }}>
-              <ListItemText primary={item} />
+              <Link
+                to={`/${item}`}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <ListItemText primary={item} />
+              </Link>
             </ListItemButton>
           </ListItem>
         ))}
@@ -111,7 +116,7 @@ export function DrawerAppBar(props: Props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: "block", sm: "none" },
@@ -124,7 +129,7 @@ export function DrawerAppBar(props: Props) {
         </Drawer>
       </nav>
       <Box component="main" sx={{ p: 0 }}>
-        <Toolbar /> 
+        <Toolbar />
       </Box>
     </div>
   );

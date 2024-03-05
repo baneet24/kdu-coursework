@@ -5,9 +5,17 @@ import { PortfolioPage } from './pages/PortfolioPage';
 import { Watchlist } from './pages/WatchListPage';
 import { StockDetailPage } from './pages/StockDetailPage';
 import { DrawerAppBar } from './components/ Navbar';
+import { useEffect } from 'react';
+import { AppDispatch } from './state/store/store';
+import { useDispatch } from 'react-redux';
+import { getTransactionsData } from './thunk/getTransactions';
 
 
 function App()  {
+  const reducedispatch: AppDispatch = useDispatch();
+  useEffect(() => {
+    reducedispatch(getTransactionsData());
+  }, []);
   return (
     <BrowserRouter>
     <DrawerAppBar/> 
