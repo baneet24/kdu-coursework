@@ -1,0 +1,17 @@
+* {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #000000;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.message-section {
+  width: 73rem;
+  color: #e7e9ea;
+  padding-left: 2rem;
+  padding-top: 2rem;
+  font-weight: 600;
+  font-size: 2.5rem;
+}/*# sourceMappingURL=messages.css.map */
