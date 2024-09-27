@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web socket</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h2 id="appname">KDU CHAT APP</h2>
+    <div class="theme-image">
+      <button id="toggleMode">
+        <img src="bulb.png" alt="Bulb Image" />
+      </button>
+    </div>
+    <div class="message-container" id="msg-container">
+      <input type="text" id="msgInput" placeholder="Enter your message" />
+      <button id="sendMessage">&#x2191;</button>
+    </div>
+
+    <div class="content">
+      <div id="messages"></div>
+    </div>
+    <script
+      src="https://cdn.socket.io/4.7.4/socket.io.min.js"
+      integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>

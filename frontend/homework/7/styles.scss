@@ -1,0 +1,118 @@
+* {
+    padding: 0;
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #111b21;
+    color: white;
+}
+
+html {
+    font-size: 8px;
+}
+
+#appname {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    text-align: center;
+    color: #00a884;
+    font-weight: 400;
+    font-size: 4.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    background-color: #202c33;
+}
+
+.message-container {
+    width: 83%;
+    display: flex;
+    position: fixed;
+    flex-direction: row;
+    justify-content: space-between;
+    left: 12rem;
+    bottom: 15px;
+    height: 8rem;
+    background-color: #202c33;
+    border-radius: 0.5rem;
+    #msgInput {
+        margin-left: 1rem;
+        width: 83%;
+        background-color: #202c33;
+        padding-left: 0.1rem;
+        border: none;
+        outline: none;
+        color: white;
+        font-size: 3rem;
+    }
+
+    #sendMessage {
+        margin-right: 1rem;
+        margin-top: 1.1rem;
+        border-radius: 0.2rem;
+        width: 6rem;
+        height: 70%;
+        background-color: #00a884;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+}
+
+.theme-image {
+    position: relative;
+    top: 10rem;
+    margin: 2rem;
+    height: 5rem;
+    width: 95%;
+    display: flex;
+    flex-direction: row-reverse;
+
+    #toggleMode {
+        border-radius: 20px;
+        background-color: #202c33;
+    }
+    img {
+        height: 5rem;
+        width: 5rem;
+    }
+}
+
+.content {
+    height: 90rem;
+    overflow-y: auto;
+    #messages {
+        margin-top: 2rem;
+        .message {
+            padding-left: 3rem;
+            padding-top: 4rem;
+            display: flex;
+            flex-direction: row;
+
+            height: 100%;
+            .msg {
+                padding: 2rem 2.1rem 1rem 2.1rem;
+                margin-left: 2rem;
+
+                height: 8rem;
+                font-size: 3rem;
+                border-radius: 2rem;
+                background-color: #202c33;
+                text-align: center;
+            }
+
+            .icon {
+                width: 8rem;
+                padding: 2rem;
+                margin-left: 5px;
+                font-size: 3.4rem;
+                border-radius: 28rem;
+                background-color: #00a884;
+                text-align: center;
+            }
+        }
+    }
+}
